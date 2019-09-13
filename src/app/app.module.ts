@@ -6,6 +6,12 @@ import {AppComponent} from './app.component';
 import {SharedModule} from './shared/shared.module';
 import {UsersModule} from './users/users.module';
 import {HttpClientModule} from '@angular/common/http';
+import {StoreModule} from '@ngrx/store';
+import {appReducers} from './store/app.reducer';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {environment} from '../environments/environment';
+import {EffectsModule} from '@ngrx/effects';
+import {effects} from './store/effects';
 
 @NgModule({
   declarations: [
@@ -17,6 +23,12 @@ import {HttpClientModule} from '@angular/common/http';
     HttpClientModule,
     SharedModule,
     UsersModule,
+    StoreModule.forRoot(appReducers),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production
+    }),
+    EffectsModule.forRoot(effects)
   ],
   providers: [],
   bootstrap: [AppComponent]

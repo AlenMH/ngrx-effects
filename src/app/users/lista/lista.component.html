@@ -1,4 +1,13 @@
-<div class="card-columns">
+<div class="row" *ngIf="loadin">
+  <div class="col">
+    <div class="alert alert-info text-center">
+      <i class="fa fa-sync fa-spin fa-2x">
+        <h5>Espere...</h5>
+      </i>
+    </div>
+  </div>
+</div>
+<div class="card-columns" *ngIf="!loadin">
   <div class="card" *ngFor="let user of users">
     <img [src]="user.avatar" class="card-img-top">
     <div class="card-body">
@@ -9,6 +18,18 @@
            iD: {{user.id}}
         </span>
       </p>
+    </div>
+  </div>
+</div>
+<div class="row" *ngIf="error">
+  <div class="col">
+    <div class="alert alert-danger text-center">
+      <i class="fa fa-times fa-2x">
+        <h5>Error: {{error.status}}</h5>
+        <p>{{error.message}}</p>
+        <br><br>
+        <p>{{error.url}}</p>
+      </i>
     </div>
   </div>
 </div>

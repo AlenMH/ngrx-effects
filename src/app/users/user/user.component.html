@@ -1,1 +1,40 @@
-<p>user works!</p>
+<div class="row" *ngIf="loadin">
+  <div class="col">
+    <div class="alert alert-info text-center">
+      <i class="fa fa-sync fa-spin fa-2x">
+        <h5>Espere...</h5>
+      </i>
+    </div>
+  </div>
+</div>
+<div class="row" *ngIf="!loadin && !error">
+  <div class="col-3">
+    <img [src]="user.avatar" class="img-thumbnail">
+  </div>
+  <div class="col">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <strong>ID:</strong> {{user.id}}
+      </li>
+      <li class="list-group-item">
+        <strong>Name:</strong> {{user.first_name}}
+      </li>
+      <li class="list-group-item">
+        <strong>LastName:</strong> {{user.last_name}}
+      </li>
+
+    </ul>
+  </div>
+</div>
+<div class="row" *ngIf="error">
+  <div class="col">
+    <div class="alert alert-danger text-center">
+      <i class="fa fa-times fa-2x">
+        <h5>Error: {{error.status}}</h5>
+        <p>{{error.message}}</p>
+        <br><br>
+        <p>{{error.url}}</p>
+      </i>
+    </div>
+  </div>
+</div>
